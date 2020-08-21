@@ -1,26 +1,60 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import listItems from './ListItem.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state= {
+      items:[],
+      currentItem: {
+        text: '',
+        key: ''
+      }
+    }
+    this.handleInput= this.handleInput.bind(this);
+    this.addItem= this.addItem.bind(this);
+  }
+  handleInput(e){
+    this.setState({
+      currentItem: {
+        text: e.target.value,
+        key: Date.now()
+      }
+    })
+  }
+  addItem(e){
+    e.preventDefault();
+    const newItem = this.state.currentItem;
+    this.items = newItem;
+    if(newItem!==""){
+      const newItems = [...this.state.items,newItem];
+      this.setState({
+        items: newItems,
+        currentItem: {
+          text: "",
+          key: ""
+        }
+      })
+    }
+  }
+  render() {
+    return (
+      <header> 
+        <div className="App"> 
+        <form id="to-do-form" onSubmit={this.addItem}>
+          <input type="text" placeholder="Enter text"
+          value={this.state.currentItem.text}
+          onChange= {this.handleInput}/>
+          <button type="Submit" > Add Item</button>
+        </form>
+      </div>
+       
+      </header>)
+      <listitems>  </listitems>
+      ;
+    }
+  }
+
 
 export default App;
