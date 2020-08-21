@@ -1,12 +1,17 @@
 import React from 'react';
 import './ListItem.css';
 
-function listItems(props){
+function ListItems(props){
+    const items= props.items;
+    const listItems = items.map(item => 
+        {
+        return <div className= "list" key ="item.key">
+            <p> {item.text} </p>
+        </div>
+    })
     return(
-        <h1>    
-            From ListItem.js
-        </h1>
+    <div> {listItems} </div>
     )
 }
 
-export default listItems
+export default ListItems;

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import listItems from './ListItem.js';
+import ListItems from './ListItem';
 
 class App extends React.Component{
   constructor(props){
@@ -40,20 +40,19 @@ class App extends React.Component{
   }
   render() {
     return (
-      <header> 
         <div className="App"> 
+        <header>
         <form id="to-do-form" onSubmit={this.addItem}>
           <input type="text" placeholder="Enter text"
           value={this.state.currentItem.text}
           onChange= {this.handleInput}/>
           <button type="Submit" > Add Item</button>
         </form>
+      </header>
+      <ListItems items= {this.state.items} > </ListItems>
       </div>
-       
-      </header>)
-      <listitems>  </listitems>
-      ;
-    }
+    )
+    };
   }
 
 
